@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+# Device gem for user authentication and user profiles
 
 # For UI Components - Navbar
 gem 'bootstrap-sass', '~> 3.3.6'
