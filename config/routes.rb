@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
+  
   devise_for :users
+  resources :users do
+    member do
+      get :trusting, :trusted_by
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   resources :posts
+  # Define Root URL
   root 'pages#index'
-  get '/home' => 'pages#home'
+  
+  # Define Routes for Pages
+  get '/home' => 'pages#home' # override default routes.
   get '/user/:id' => 'pages#profile'
   get '/explore' => 'pages#explore'
 

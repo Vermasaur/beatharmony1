@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160813165505) do
+ActiveRecord::Schema.define(version: 20160814223132) do
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20160813165505) do
 
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "trusting_id"
+    t.integer  "trusted_by_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "relationships", ["trusted_by_id"], name: "index_relationships_on_trusted_by_id"
+  add_index "relationships", ["trusting_id", "trusted_by_id"], name: "index_relationships_on_trusting_id_and_trusted_by_id", unique: true
+  add_index "relationships", ["trusting_id"], name: "index_relationships_on_trusting_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

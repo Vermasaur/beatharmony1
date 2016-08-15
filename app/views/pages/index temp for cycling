@@ -1,0 +1,47 @@
+http://michaelsoriano.com/create-rotating-full-paged-background-images-with-css-and-jquery/
+
+
+html 
+
+<div id="slideshow">
+  <img src="/public/8540647831_f9e05ca048_0.jpg" class="bgM"/>
+  <img src="/public/HNCK6973.jpg" class="bgM"/>
+  <img src="/public/tumblr_np2yslf0Ev1qfirfao1_1280.jpg" class="bgM"/>
+  <img src="/public/tumblr_nsoc5ikBbb1qfirfao.jpg" class="bgM"/>
+  <img src="/public/tumblr_noco7zrrF31qfirfao1_1280.jpg" class="bgM"/>
+  <img src="/public/water-1281247_960_720.jpg" class="bgM"/>
+  <img src="/public/tumblr_npgbxsYjeZ1qfirfao1_1280.jpg" class="bgM"/>
+</div>
+<div id="wrap">
+</div>
+
+
+css
+
+#slideshow, img.bgM {
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:-9999;
+}
+
+
+html
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.cycle.all.2.74.js"></script>
+<script>
+$(document).ready(function() {
+	$('#slideshow').cycle({
+	fx: 'fade',
+	pager: '#smallnav',
+	pause:   1,
+	speed: 1800,
+	timeout:  3500
+	});
+});
+</script>

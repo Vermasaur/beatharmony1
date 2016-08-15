@@ -1,0 +1,19 @@
+<% if current_user.id != user.id %>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <center>
+                <% if !current_user.trusting?(user) %>
+                    <%= form_for(current_user.active_relationships.build) do |f| %>
+                        <div><%= hidden_field_tag :trusted_by_id, user.id %></div>
+                        <%= f.submit "Trust", class: "btn btn-primary" %>
+                    <% end %>
+                <% else %>
+                    <%= form_for(current_user.active_relationships.find_by(trusted_by_id: user.id),
+                        html: { method: :delete }) do |f| %>
+                        <%= f.submit "Untrust", class: "btn" %>
+                    <% end %>
+                <% end %>
+            </center>
+        </div>
+    </div>
+<% end %>
